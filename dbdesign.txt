@@ -1,0 +1,43 @@
+use DBTravel;
+CREATE table Login(
+l_id numeric(5) primary key identity(1,1),
+Username varchar(20),
+Password varchar(20),
+UserType varchar(20));
+
+
+
+create table Registration(
+emp_id numeric primary key identity(1,1),
+FirstName varchar(20),
+LastName varchar(20),
+Age int,
+Gender varchar(10),
+Address varchar(30),
+PhoneNumber numeric(5),
+l_id numeric(5),
+foreign key (l_id) references Login(l_id));
+
+
+
+create table RequestTable(
+requestId numeric(5) primary key identity(1,1),
+causeTravel varchar(100),
+source varchar(100),
+destination numeric(5),
+mode varchar(100),
+fromDate date ,
+toDate date,
+noDays numeric(5),
+priority varchar(20),
+status varchar(20),
+emp_id numeric,
+projectId numeric(5),
+foreign key (emp_id) references Registration(emp_id),
+foreign key (projectId) references project(projectId));
+
+
+
+create table project(
+projectId numeric(5) primary key,
+projectName varchar(100));
